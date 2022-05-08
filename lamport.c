@@ -1,6 +1,7 @@
 #include <stdio.h>
 
+
 int main(){
-    printf("Hola Mundo\n");
+    char direcciones[][5] = {"192."}
     return 0;
 }
