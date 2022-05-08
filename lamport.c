@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <sys/time.h>
+#include <time.h>
 
 int llave = 0
 
@@ -10,6 +12,20 @@ int main(){
         //solicitar tiempo local
         //Enviar mensaje a todas máquinas el par (tiempo loca, dirección ip) 
     }
+
+	//obtención del tiempo
+	gettimeofday(&current_time, NULL); //Se obtiene el tiempo
+        
+	printf("\nTime (seconds) : %ld\n",current_time.tv_sec); //Se imprime el tiempo en segundos
+	t=current_time.tv_sec;
+	info=localtime(&t);
+	strftime(hora,sizeof hora,"The time is %I:%M:%S %p.\n",info); //Se imprime el tiempo en formato HH:MM:SS
+	printf("%s",hora);
+
+	sprintf(str, "%ld", current_time.tv_sec);
+	bzero(buffer, 1024);
+	strcpy(buffer, str);
+	send(sock, buffer, strlen(buffer),0);
 
     
 }
